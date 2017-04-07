@@ -1,0 +1,30 @@
+# BEGIN Adaptive Images
+#=======================
+
+<IfModule mod_rewrite.c>
+
+    RewriteEngine On
+
+    # Watched directories
+
+    RewriteCond %{REQUEST_URI} /zeng/wp-content/uploads
+
+    # Redirect images through the adaptive images php
+    RewriteRule \.(?:jpe?g|gif|png)$ /zeng/wp-content/themes/onemax/inc/functions/adaptive-images.php [L]
+
+</IfModule>
+
+# END Adaptive Images
+
+
+# BEGIN WordPress
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /~zcher82/zeng/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /~zcher82/zeng/index.php [L]
+</IfModule>
+
+# END WordPress

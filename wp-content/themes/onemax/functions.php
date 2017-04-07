@@ -19,23 +19,23 @@ function onemax_theme_activated () {
   //$old_adaptive=file_get_contents($adaptive_file);
   //$new_adaptive=preg_replace( '/\/\/cache_path_to_replace.*\/\/cache_path_end/s', '//cache_path_to_replace'."\n".'$cache_path    = "'.substr($subfold,1).'wp-content/uploads/ai-cache"; //cache_path_end', $old_adaptive );
   //@file_put_contents( $adaptive_file, $new_adaptive );
-  $htaccess_rewrite_block = 
+  $htaccess_rewrite_block =
             "# BEGIN Adaptive Images\n".
-            "#=======================\n" . 
-            "\n" . 
-            "<IfModule mod_rewrite.c>\n" . 
-            "\n" . 
-            "    RewriteEngine On\n" . 
-            "\n" . 
+            "#=======================\n" .
+            "\n" .
+            "<IfModule mod_rewrite.c>\n" .
+            "\n" .
+            "    RewriteEngine On\n" .
+            "\n" .
             "    # Watched directories\n".
-            "\n" . 
+            "\n" .
             "    RewriteCond %{REQUEST_URI} ".$subfold."wp-content/uploads\n".
-            "\n" . 
+            "\n" .
             "    # Redirect images through the adaptive images php\n".
-            "    RewriteRule \.(?:jpe?g|gif|png)$ ".$subfold."wp-content/themes/onemax/inc/functions/adaptive-images.php [L]\n" . 
-            "\n" . 
-            "</IfModule>\n" . 
-            "\n" . 
+            "    RewriteRule \.(?:jpe?g|gif|png)$ ".$subfold."wp-content/themes/onemax/inc/functions/adaptive-images.php [L]\n" .
+            "\n" .
+            "</IfModule>\n" .
+            "\n" .
             "# END Adaptive Images";
   if(( ! file_exists( $htaccess_path ) && @fopen( $htaccess_path, 'w' ) ) || (   file_exists( $htaccess_path ) && is_writable( $htaccess_path ) )){
     $htaccess_old_contents = file_get_contents( $htaccess_path );
